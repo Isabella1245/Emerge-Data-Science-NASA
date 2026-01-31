@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import mplcursors
 
-# --- reuse your clean_precipitation_data function ---
+
 def clean_precipitation_data(df):
     df = df.copy()
     df[' precipitation'] = df[' precipitation'].replace(-99.99, np.nan) /100
@@ -23,12 +23,12 @@ def clean_precipitation_data(df):
 
     return df
 
-# --- output CSVs ---
+
 def output_precipitation_data(df, output_path):
     df.to_csv(output_path, index=True)
     print(f"Saved cleaned data to {output_path}")
 
-# --- optional plotting --- 
+
 def plot_precipitation(df, title='Precipitation Over Time', save_path=None):
     fig, ax = plt.subplots(figsize=(12, 6))
     line, = ax.plot(df.index, df[' precipitation'], marker='o', linestyle='-', markersize=4)
@@ -37,7 +37,7 @@ def plot_precipitation(df, title='Precipitation Over Time', save_path=None):
     ax.set_ylabel('Precipitation (inches)')
     ax.grid(True)
 
-    # Hover only on the line
+
     cursor = mplcursors.cursor(line, hover=True)
     @cursor.connect("add")
     def on_add(sel):
@@ -48,11 +48,11 @@ def plot_precipitation(df, title='Precipitation Over Time', save_path=None):
     if save_path:
         plt.savefig(save_path)
         print(f"Saved plot to {save_path}")
-        plt.close(fig)  # don't display
+        plt.close(fig)  
     else:
         plt.show()
 
-# --- batch processing ---
+
 def process_folder(input_folder, output_folder, plot_folder=None):
     os.makedirs(output_folder, exist_ok=True)
     if plot_folder:
@@ -71,9 +71,9 @@ def process_folder(input_folder, output_folder, plot_folder=None):
                 plot_path = os.path.join(plot_folder, f"{os.path.splitext(filename)[0]}.png")
                 plot_precipitation(df_clean, title=filename, save_path=plot_path)
 
-# --- usage ---
-input_folder = 'C:/Users/genui/Desktop/test/dirtyCSVs'
-output_folder = 'C:/Users/genui/Desktop/NASA/cleaned_csvs/'
-plot_folder = 'C:/Users/genui/Desktop/NASA/plots/'
+
+input_folder = 'C:/TEMPinput'
+output_folder = 'C:/TEMPoutput'
+plot_folder = 'C:/TEMPplots'
 
 process_folder(input_folder, output_folder, plot_folder)
