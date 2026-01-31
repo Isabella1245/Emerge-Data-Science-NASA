@@ -1,1 +1,3 @@
 # Emerge-Data-Science-NASA
+
+The intention of this project is to depict the relation between mosquito presence and annual rainfall rates per county across Florida. This project contains datasets which illustrate **average yearly rainfall statistics across Florida**. It includes the annual rainfall data from FSU which averages it in inches, making it useful for interpreting **how climate impacts environmental modeling and mosquito populations**. When a county is hovered over, the mosquito population statistics and precipitation line plots are revealed, which makes it helpful to interpret the correlation.  
